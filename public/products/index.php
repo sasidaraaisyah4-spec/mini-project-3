@@ -39,7 +39,7 @@ require '../../views/header.php';
 </form>
 
 <table border="1" style="width:100%; margin-top:10px;">
-    <tr><th>SKU</th><th>Nama Pakaian</th><th>Kategori</th><th>Stok</th><th>Harga</th></tr>
+    <tr><th>SKU</th><th>Nama Pakaian</th><th>Kategori</th><th>Stok</th><th>Harga</th><th>Aksi</th></tr>
     <?php foreach($products as $p): ?>
     <tr>
         <td><?= e($p['sku']) ?></td>
@@ -47,6 +47,26 @@ require '../../views/header.php';
         <td><?= e($p['category_name']) ?></td>
         <td><?= e($p['stock']) ?> pcs</td>
         <td>Rp <?= e(number_format($p['price'], 0, ',', '.')) ?></td>
+        <td>
+    <?php 
+    $isAdmin = false;
+    
+    // Deteksi otomatis keberadaan akun admin dari seluruh isi data session
+    if (isset($_SESSION)) {
+        $data_sesi = json_encode($_SESSION);
+        if (strpos(strtolower($data_sesi), 'admin') !== false) {
+            $isAdmin = true;
+        }
+    }
+
+    if ($isAdmin) : 
+    ?>
+        <a href="edit.php?id=<?= $p['id'] ?>" style="color: #60A5FA; text-decoration: none; margin-right: 15px;">Edit</a>
+        <a href="delete.php?id=<?= $p['id'] ?>" onclick="return confirm('Yakin ingin menghapus pakaian ini?')" style="color: #F87171; text-decoration: none;">Hapus</a>
+    <?php else : ?>
+        <span style="color: #9CA3AF; font-size: 14px;">Akses Dibatasi</span>
+    <?php endif; ?>
+</td>
     </tr>
     <?php endforeach; ?>
 </table>

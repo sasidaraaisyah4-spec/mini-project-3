@@ -54,6 +54,7 @@
             <a href="/inventory-app/public/dashboard.php">Dashboard</a>
             <a href="/inventory-app/public/products/index.php">Data Pakaian</a>
             <a href="/inventory-app/public/stock/out.php">Barang Keluar</a>
+            <a href="/inventory-app/public/stock/in.php">Barang Masuk</a>
         </div>
         <?php if (isset($_SESSION['user'])): ?>
             <a href="/inventory-app/public/login.php?action=logout" class="logout-btn">

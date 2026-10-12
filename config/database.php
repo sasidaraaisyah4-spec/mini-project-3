@@ -1,6 +1,6 @@
 <?php
 $host = '127.0.0.1';
-$db   = 'db_toko_pakaian';
+$db   = 'inventory_db';
 $user = 'root';
 $pass = '';
 
